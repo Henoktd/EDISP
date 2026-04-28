@@ -37,11 +37,35 @@ jobs:
           CPANEL_PASSWORD: ${{ secrets.CPANEL_PASSWORD }}
           CPANEL_TARGET_DIR: ${{ secrets.CPANEL_TARGET_DIR }}
         run: |
-          test -n "$CPANEL_HOST"
-          test -n "$CPANEL_PORT"
-          test -n "$CPANEL_USERNAME"
-          test -n "$CPANEL_PASSWORD"
-          test -n "$CPANEL_TARGET_DIR"
+          missing=0
+
+          if [ -z "$CPANEL_HOST" ]; then
+            echo "::error title=Missing secret::CPANEL_HOST is empty or not configured."
+            missing=1
+          fi
+
+          if [ -z "$CPANEL_USERNAME" ]; then
+            echo "::error title=Missing secret::CPANEL_USERNAME is empty or not configured."
+            missing=1
+          fi
+
+          if [ -z "$CPANEL_PASSWORD" ]; then
+            echo "::error title=Missing secret::CPANEL_PASSWORD is empty or not configured."
+            missing=1
+          fi
+
+          if [ -z "$CPANEL_TARGET_DIR" ]; then
+            echo "::error title=Missing secret::CPANEL_TARGET_DIR is empty or not configured."
+            missing=1
+          fi
+
+          if [ "$missing" -ne 0 ]; then
+            exit 1
+          fi
+
+          if [ -z "$CPANEL_PORT" ]; then
+            CPANEL_PORT=22
+          fi
 
           lftp -u "$CPANEL_USERNAME","$CPANEL_PASSWORD" "sftp://$CPANEL_HOST:$CPANEL_PORT" <<EOF
           set sftp:auto-confirm yes
