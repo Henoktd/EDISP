@@ -29,7 +29,7 @@ jobs:
       - name: Install lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
 
-      - name: Deploy dist to cPanel over FTPS
+      - name: Deploy dist to cPanel over FTP with TLS
         env:
           CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
           CPANEL_PORT: ${{ secrets.CPANEL_PORT }}
@@ -77,4 +77,4 @@ jobs:
           echo "Deploying to port: $CPANEL_PORT"
           echo "Deploying to target directory: $CPANEL_TARGET_DIR"
 
-          lftp -u "$CPANEL_USERNAME","$CPANEL_PASSWORD" "ftps://$CPANEL_HOST:$CPANEL_PORT" -e "set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate no; set net:max-retries 2; set net:timeout 20; mirror --reverse --delete --verbose dist $CPANEL_TARGET_DIR; bye"
+          lftp -u "$CPANEL_USERNAME","$CPANEL_PASSWORD" "ftp://$CPANEL_HOST:$CPANEL_PORT" -e "set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate no; set net:max-retries 2; set net:timeout 20; mirror --reverse --delete --verbose dist $CPANEL_TARGET_DIR; bye"
