@@ -63,9 +63,9 @@ jobs:
             exit 1
           fi
 
-          CPANEL_HOST="$(printf '%s' "$CPANEL_HOST" | tr -d '\r\n' | sed -E 's#^sftp://##; s#^https?://##; s#/$##')"
-          CPANEL_PORT="$(printf '%s' "$CPANEL_PORT" | tr -d '\r\n')"
-          CPANEL_USERNAME="$(printf '%s' "$CPANEL_USERNAME" | tr -d '\r\n')"
+          CPANEL_HOST="$(printf '%s' "$CPANEL_HOST" | tr -d '\r\n\t ' | sed -E 's#^sftp://##; s#^https?://##; s#/.*$##; s#:[0-9]+$##; s#/$##')"
+          CPANEL_PORT="$(printf '%s' "$CPANEL_PORT" | tr -d '\r\n\t ')"
+          CPANEL_USERNAME="$(printf '%s' "$CPANEL_USERNAME" | tr -d '\r\n\t ')"
           CPANEL_PASSWORD="$(printf '%s' "$CPANEL_PASSWORD" | tr -d '\r\n')"
           CPANEL_TARGET_DIR="$(printf '%s' "$CPANEL_TARGET_DIR" | tr -d '\r\n')"
 
