@@ -48,7 +48,7 @@ export const serviceCategories = [
     title: 'Residency',
     description: 'Temporary and long-term permits',
     detail: 'Apply for a residence permit using verified identity data.',
-    path: '/apply/residence-permit',
+    path: '/apply/residence/step1',
   },
   {
     title: 'Work Permit',
@@ -105,4 +105,64 @@ export const adminChartData = [
   { name: 'Wed', applications: 271, approved: 221 },
   { name: 'Thu', applications: 286, approved: 232 },
   { name: 'Fri', applications: 263, approved: 217 },
+] as const
+
+export const applicationQueue = [
+  {
+    applicationId: 'ETH-RES-10234',
+    applicantName: applicant.name,
+    service: 'Residence Permit',
+    submitted: 'Apr 27, 2026',
+    faydaStatus: 'Verified',
+    payment: 'Paid',
+    status: 'Under Review',
+    risk: 'Low',
+  },
+  {
+    applicationId: 'ETH-VIS-10235',
+    applicantName: 'Hana Tesfaye',
+    service: 'Visa Services',
+    submitted: 'Apr 27, 2026',
+    faydaStatus: 'Verified',
+    payment: 'Paid',
+    status: 'Submitted',
+    risk: 'Low',
+  },
+  {
+    applicationId: 'ETH-WRK-10236',
+    applicantName: 'Dawit Alemu',
+    service: 'Work Permit',
+    submitted: 'Apr 26, 2026',
+    faydaStatus: 'Verified',
+    payment: 'Paid',
+    status: 'Correction Required',
+    risk: 'Medium',
+  },
+] as const
+
+export const processingActivity = [
+  {
+    applicationId: 'ETH-RES-10234',
+    service: 'Residence Permit',
+    officer: application.officer,
+    status: 'Approved',
+    processingTime: '2 days',
+    decisionDate: 'Apr 28, 2026',
+  },
+  {
+    applicationId: 'ETH-VIS-10235',
+    service: 'Visa Services',
+    officer: 'Officer Selam',
+    status: 'Under Review',
+    processingTime: '1 day',
+    decisionDate: 'Pending',
+  },
+  {
+    applicationId: 'ETH-WRK-10236',
+    service: 'Work Permit',
+    officer: 'Officer Dawit',
+    status: 'Correction Required',
+    processingTime: '3 days',
+    decisionDate: 'Pending',
+  },
 ] as const

@@ -25,7 +25,7 @@ const defaultSteps = [
 
 export function ProgressSteps({
   steps,
-  currentStep = 1,
+  currentStep = 0,
   className,
 }: ProgressStepsProps) {
   const resolvedSteps =
@@ -42,10 +42,7 @@ export function ProgressSteps({
 
   return (
     <ol
-      className={cn(
-        'grid gap-2 rounded-lg border border-gray-200 bg-white p-3 md:grid-cols-6',
-        className,
-      )}
+      className={cn('flex flex-wrap items-center gap-y-3', className)}
       aria-label="Application progress"
     >
       {resolvedSteps.map((step, index) => {
@@ -57,23 +54,21 @@ export function ProgressSteps({
           <li
             key={step.label}
             className={cn(
-              'flex items-center gap-2 rounded-md border px-3 py-2 text-sm',
-              isCurrent && 'border-blue-100 bg-blue-50 text-[#153d73]',
-              isComplete && 'border-green-100 bg-green-50 text-green-700',
-              !isCurrent && !isComplete && 'border-gray-200 bg-gray-50 text-gray-500',
+              'flex items-center text-sm text-[#334155]',
+              index < resolvedSteps.length - 1 &&
+                'after:mx-4 after:block after:h-px after:w-12 after:bg-gray-300 md:after:w-20',
             )}
           >
             <span
               className={cn(
-                'flex h-6 w-6 shrink-0 items-center justify-center rounded border text-xs font-medium',
-                isCurrent && 'border-[#1a4d8f] bg-[#1a4d8f] text-white',
-                isComplete && 'border-green-700 bg-green-700 text-white',
-                !isCurrent && !isComplete && 'border-gray-200 bg-white text-gray-500',
+                'mr-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-xs font-semibold',
+                (isCurrent || isComplete) && 'border-[#1a4d8f] bg-[#1a4d8f] text-white',
+                !isCurrent && !isComplete && 'border-gray-300 bg-white text-gray-500',
               )}
             >
-              {isComplete ? <Check className="h-3.5 w-3.5" aria-hidden="true" /> : index + 1}
+              {isComplete ? <Check className="h-4 w-4" aria-hidden="true" /> : isCurrent ? '•' : ''}
             </span>
-            <span className="font-medium">{step.label}</span>
+            <span>{step.label}</span>
           </li>
         )
       })}

@@ -7,8 +7,11 @@ export function AppShell() {
   const { pathname } = useLocation()
   const withSidebar =
     pathname.startsWith('/applicant-dashboard') ||
+    pathname.startsWith('/dashboard') ||
     pathname.startsWith('/officer-dashboard') ||
+    pathname.startsWith('/officer') ||
     pathname.startsWith('/admin-dashboard') ||
+    pathname.startsWith('/admin') ||
     pathname.startsWith('/system-architecture')
 
   return (

@@ -32,11 +32,20 @@ function App() {
             path="/apply/residence-permit"
             element={<ResidencePermitPage />}
           />
+          <Route
+            path="/apply/residence/:stepId"
+            element={<ResidencePermitPage />}
+          />
+          <Route
+            path="/apply/residence/confirmation"
+            element={<ConfirmationPage />}
+          />
           <Route path="/confirmation" element={<ConfirmationPage />} />
           <Route
             path="/applicant-dashboard"
             element={<ApplicantDashboardPage />}
           />
+          <Route path="/dashboard" element={<ApplicantDashboardPage />} />
           <Route path="/officer-dashboard" element={<OfficerDashboardPage />} />
           <Route
             path="/officer-dashboard/:decision"
