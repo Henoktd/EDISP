@@ -1,84 +1,50 @@
 import { Link } from 'react-router-dom'
-import { Fingerprint, LockKeyhole, Smartphone } from 'lucide-react'
-import { PageFrame } from '../components/layout/PageFrame'
+import { Shield } from 'lucide-react'
 import { Input } from '../components/ui/Input'
-import { Panel } from '../components/ui/Panel'
-import { StatusBadge } from '../components/ui/StatusBadge'
 import { applicant } from '../data/mockData'
 
 export function FaydaLoginPage() {
   return (
-    <PageFrame
-      eyebrow="Simulated national ID verification"
-      title="Fayda login"
-      description="A mock entry point for demonstrating how a verified Ethiopian identity could unlock immigration services. No real Fayda service is contacted."
-      actions={<StatusBadge tone="gold">simulation only</StatusBadge>}
-    >
-      <div className="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
-        <Panel>
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded border border-gov-green-100 bg-gov-green-50 text-gov-green-700">
-              <Fingerprint className="h-5 w-5" aria-hidden="true" />
-            </div>
-            <div>
-              <h2 className="text-xl font-semibold text-gov-ink">
-                Fayda identity check
-              </h2>
-              <p className="text-sm text-gov-muted">Prototype credential screen</p>
-            </div>
-          </div>
+    <div className="min-h-[calc(100vh-75px)] bg-gray-50 px-6 py-16">
+      <div className="mx-auto max-w-[360px] rounded-lg border border-gray-200 bg-white px-7 py-8 shadow-sm">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-green-50 text-green-600">
+          <Shield className="h-7 w-7" aria-hidden="true" />
+        </div>
 
-          <div className="mt-6 space-y-4">
-            <Input
-              label="Fayda ID"
-              placeholder="1234 5678 9012"
-              defaultValue={applicant.faydaId}
-              helperText="Enter the 12-digit Fayda number format shown on the national ID."
-            />
-            <Input
-              label="Phone confirmation"
-              readOnly
-              value={applicant.phone}
-              helperText="Mock phone verification only"
-            />
-          </div>
+        <div className="mt-5 text-center">
+          <h1 className="text-xl font-semibold text-[#020817]">
+            Fayda Identity Verification
+          </h1>
+          <p className="mt-2 text-sm text-[#334155]">National Digital ID System</p>
+        </div>
 
-          <Link
-            to="/auth/verifying"
-            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded bg-gov-blue-800 px-4 py-3 text-sm font-semibold text-white hover:bg-gov-blue-900"
-          >
-            <LockKeyhole className="h-4 w-4" aria-hidden="true" />
-            Verify mock identity
-          </Link>
-        </Panel>
+        <div className="mt-6">
+          <Input
+            label="Fayda Identification Number"
+            defaultValue={applicant.faydaId.replaceAll(' ', '')}
+            helperText="Enter your 12-digit Fayda Identification Number"
+            className="h-9 border-0 bg-[#f3f3f5]"
+          />
+        </div>
 
-        <Panel>
-          <h2 className="text-xl font-semibold text-gov-ink">
-            Identity assurance model
-          </h2>
-          <div className="mt-5 grid gap-3">
-            {[
-              'Biographic attributes are prefilled from mock Fayda data.',
-              'Phone confirmation is simulated for the clickable prototype.',
-              'Eligibility is calculated locally from mock service rules.',
-            ].map((item) => (
-              <div
-                key={item}
-                className="flex gap-3 rounded border border-gov-border bg-gov-surface p-3"
-              >
-                <Smartphone className="mt-0.5 h-4 w-4 text-gov-blue-800" aria-hidden="true" />
-                <p className="text-sm leading-6 text-gov-muted">{item}</p>
-              </div>
-            ))}
-          </div>
-          <Link
-            to="/auth/foreign"
-            className="mt-5 inline-flex text-sm font-semibold text-gov-blue-800 hover:text-gov-blue-900"
-          >
-            Continue without Fayda as a foreign applicant
-          </Link>
-        </Panel>
+        <Link
+          to="/auth/verifying"
+          className="mt-4 inline-flex h-[50px] w-full items-center justify-center rounded-[10px] bg-[#205493] px-4 text-lg font-semibold text-white hover:bg-[#1a477f]"
+        >
+          Verify Identity with Fayda
+        </Link>
+
+        <Link
+          to="/auth/foreign"
+          className="mt-5 block text-center text-sm font-medium text-[#1f4f8f] hover:underline"
+        >
+          Foreign user? Continue with passport
+        </Link>
+
+        <div className="mt-6 rounded border border-blue-100 bg-blue-50 px-4 py-4 text-sm text-[#153d73]">
+          Identity verification is simulated for demo purposes.
+        </div>
       </div>
-    </PageFrame>
+    </div>
   )
 }
