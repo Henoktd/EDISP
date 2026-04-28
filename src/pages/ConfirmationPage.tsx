@@ -37,7 +37,7 @@ export function ConfirmationPage() {
           </div>
         </dl>
         <Link
-          to="/applicant"
+          to="/applicant-dashboard"
           className="mt-6 inline-flex h-10 items-center justify-center rounded-md bg-[#1a4d8f] px-4 text-sm font-medium text-white hover:bg-[#153d73]"
         >
           Open Applicant Dashboard

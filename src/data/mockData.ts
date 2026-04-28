@@ -15,8 +15,8 @@ export const application = {
   status: 'Under Review',
   paymentStatus: 'Paid',
   receiptNumber: 'PAY-ETH-78291',
-  submittedDate: '2026-04-27',
-  appointmentDate: '2026-05-03',
+  submittedDate: 'April 27, 2026',
+  appointmentDate: 'May 3, 2026',
   officer: 'Senior Officer Mekonnen',
   riskLevel: 'Low',
   documents: [
@@ -38,10 +38,71 @@ export const adminMetrics = {
 } as const
 
 export const serviceCategories = [
-  'Visa Services',
-  'Residency',
-  'Work Permit',
-  'Exit Clearance',
-  'Status Tracking',
-  'Payments',
+  {
+    title: 'Visa Services',
+    description: 'Entry, tourist, business, transit',
+    detail: 'Apply for visitor, business, transit, and extension services.',
+    path: '/services',
+  },
+  {
+    title: 'Residency',
+    description: 'Temporary and long-term permits',
+    detail: 'Apply for a residence permit using verified identity data.',
+    path: '/apply/residence-permit',
+  },
+  {
+    title: 'Work Permit',
+    description: 'Legal work authorization',
+    detail: 'Coordinate employment authorization with immigration status.',
+    path: '/services',
+  },
+  {
+    title: 'Exit Clearance',
+    description: 'Travel permissions',
+    detail: 'Submit regulated departure and clearance requests.',
+    path: '/services',
+  },
+  {
+    title: 'Status Tracking',
+    description: 'Track application progress',
+    detail: 'View case status, appointment dates, and officer decisions.',
+    path: '/applicant-dashboard',
+  },
+  {
+    title: 'Payments',
+    description: 'Fees and receipts',
+    detail: 'Review simulated payment status and receipt information.',
+    path: '/applicant-dashboard',
+  },
+] as const
+
+export const applicationTimeline = [
+  {
+    title: 'Identity verified',
+    date: 'April 27, 2026',
+    description: 'Fayda identity and biometric status confirmed for demo flow.',
+  },
+  {
+    title: 'Application submitted',
+    date: 'April 27, 2026',
+    description: 'Residence permit request received by the immigration portal.',
+  },
+  {
+    title: 'Officer review',
+    date: 'April 28, 2026',
+    description: 'Application assigned to Senior Officer Mekonnen.',
+  },
+  {
+    title: 'Appointment scheduled',
+    date: 'May 3, 2026',
+    description: 'Applicant visit date reserved for residence permit review.',
+  },
+] as const
+
+export const adminChartData = [
+  { name: 'Mon', applications: 240, approved: 188 },
+  { name: 'Tue', applications: 256, approved: 204 },
+  { name: 'Wed', applications: 271, approved: 221 },
+  { name: 'Thu', applications: 286, approved: 232 },
+  { name: 'Fri', applications: 263, approved: 217 },
 ] as const

@@ -10,7 +10,7 @@ export function FaydaVerifyingPage() {
   return (
     <PageFrame
       eyebrow="Verification in progress"
-      title="Preparing verified profile"
+      title="Verifying identity through Fayda National ID System"
       description="The prototype shows the sequence of checks a production platform could perform. This screen uses static mock verification results."
       actions={<StatusBadge tone="gold">mock verification</StatusBadge>}
     >
@@ -51,7 +51,7 @@ export function FaydaVerifyingPage() {
         </div>
 
         <Link
-          to="/verified-profile"
+          to="/auth/verified"
           className="mt-6 inline-flex items-center justify-center rounded bg-gov-green-700 px-4 py-3 text-sm font-semibold text-white hover:bg-gov-green-900"
         >
           Continue to verified profile

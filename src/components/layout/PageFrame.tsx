@@ -21,7 +21,7 @@ export function PageFrame({
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.22, ease: 'easeOut' }}
-      className="space-y-6"
+      className="space-y-6 px-6 py-10 md:px-9"
     >
       <div className="flex flex-col gap-4 border-b border-gov-border pb-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">

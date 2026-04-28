@@ -1,37 +1,5 @@
 import { Link } from 'react-router-dom'
-
-const landingServices = [
-  {
-    title: 'Visa Services',
-    description: 'Entry, tourist, business, transit',
-    path: '/services',
-  },
-  {
-    title: 'Residency',
-    description: 'Temporary and long-term permits',
-    path: '/apply/residence-permit',
-  },
-  {
-    title: 'Work Permit',
-    description: 'Legal work authorization',
-    path: '/services',
-  },
-  {
-    title: 'Exit Clearance',
-    description: 'Travel permissions',
-    path: '/services',
-  },
-  {
-    title: 'Status Tracking',
-    description: 'Track application progress',
-    path: '/applicant',
-  },
-  {
-    title: 'Payments',
-    description: 'Fees and receipts',
-    path: '/applicant',
-  },
-]
+import { serviceCategories } from '../data/mockData'
 
 export function HomePage() {
   return (
@@ -48,19 +16,19 @@ export function HomePage() {
 
           <div className="mt-12 flex flex-wrap gap-6">
             <Link
-              to="/auth"
+              to="/auth/fayda"
               className="inline-flex h-[54px] items-center justify-center rounded-[10px] bg-[#1f4f8f] px-6 text-xl font-semibold text-white hover:bg-[#153d73]"
             >
               Login with Fayda
             </Link>
             <Link
-              to="/auth?mode=foreign"
+              to="/auth/foreign"
               className="inline-flex h-[54px] items-center justify-center rounded-[10px] border border-gray-200 bg-white px-6 text-xl font-semibold text-black hover:bg-gray-50"
             >
               Foreign User Access
             </Link>
             <Link
-              to="/applicant"
+              to="/applicant-dashboard"
               className="inline-flex h-[54px] items-center justify-center rounded-[10px] border border-gray-200 bg-white px-6 text-xl font-semibold text-black hover:bg-gray-50"
             >
               Track Application
@@ -74,7 +42,7 @@ export function HomePage() {
           Immigration Services
         </h2>
         <div className="mt-9 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {landingServices.map((service) => (
+          {serviceCategories.map((service) => (
             <Link
               key={service.title}
               to={service.path}

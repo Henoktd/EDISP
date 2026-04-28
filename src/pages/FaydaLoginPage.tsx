@@ -29,7 +29,12 @@ export function FaydaLoginPage() {
           </div>
 
           <div className="mt-6 space-y-4">
-            <Input label="Fayda number" readOnly value={applicant.faydaId} />
+            <Input
+              label="Fayda ID"
+              placeholder="1234 5678 9012"
+              defaultValue={applicant.faydaId}
+              helperText="Enter the 12-digit Fayda number format shown on the national ID."
+            />
             <Input
               label="Phone confirmation"
               readOnly
@@ -39,7 +44,7 @@ export function FaydaLoginPage() {
           </div>
 
           <Link
-            to="/fayda-verifying"
+            to="/auth/verifying"
             className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded bg-gov-blue-800 px-4 py-3 text-sm font-semibold text-white hover:bg-gov-blue-900"
           >
             <LockKeyhole className="h-4 w-4" aria-hidden="true" />
@@ -67,7 +72,7 @@ export function FaydaLoginPage() {
             ))}
           </div>
           <Link
-            to="/foreign-login"
+            to="/auth/foreign"
             className="mt-5 inline-flex text-sm font-semibold text-gov-blue-800 hover:text-gov-blue-900"
           >
             Continue without Fayda as a foreign applicant

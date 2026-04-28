@@ -29,8 +29,16 @@ export function ForeignLoginPage() {
           </div>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <Input label="Fayda ID" readOnly value={applicant.faydaId} />
-            <Input label="Email address" readOnly value={applicant.email} />
+            <Input
+              label="Passport number"
+              defaultValue="P-ET-4892301"
+              helperText="Mock passport credential for foreign applicant access."
+            />
+            <Input
+              label="Email address"
+              defaultValue={applicant.email}
+              helperText="Email verification is simulated."
+            />
           </div>
 
           <Link

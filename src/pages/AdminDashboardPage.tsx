@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { ApplicationTable } from '../components/dashboard/ApplicationTable'
 import { Card } from '../components/ui/Card'
@@ -35,6 +36,12 @@ export function AdminDashboardPage() {
         <p className="mt-3 max-w-2xl text-sm leading-6 text-gray-600">
           Mock operational metrics for decision-maker demonstration.
         </p>
+        <Link
+          to="/system-architecture"
+          className="mt-5 inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white px-4 text-sm font-semibold text-[#1a4d8f] hover:bg-gray-50"
+        >
+          View System Architecture
+        </Link>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">

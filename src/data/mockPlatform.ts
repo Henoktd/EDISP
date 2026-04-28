@@ -44,22 +44,13 @@ export const adminSummaryMetrics: PlatformMetric[] = [
   },
 ]
 
-const serviceDescriptions: Record<(typeof serviceCategories)[number], string> = {
-  'Visa Services': 'Apply for entry visa services and related extensions.',
-  Residency: 'Submit, validate, and track residence permit applications.',
-  'Work Permit': 'Link immigration status with employment authorization.',
-  'Exit Clearance': 'Prepare clearance requests for regulated departures.',
-  'Status Tracking': 'Track submitted applications and appointment schedules.',
-  Payments: 'Review payment obligations and receipt confirmation.',
-}
-
 export const serviceCards: ServiceCard[] = serviceCategories.map((category) => ({
-  title: category,
-  description: serviceDescriptions[category],
-  path: category === 'Residency' ? '/apply/residence-permit' : '/services',
-  status: category === 'Residency' ? 'active' : 'scheduled',
+  title: category.title,
+  description: category.detail,
+  path: category.path,
+  status: category.title === 'Residency' ? 'active' : 'scheduled',
   processingTime:
-    category === 'Residency'
+    category.title === 'Residency'
       ? `${adminMetrics.averageProcessingTime} average`
       : 'Service workflow preview',
 }))

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { AlertTriangle, CheckCircle2, FileWarning, ShieldAlert } from 'lucide-react'
 import { ApplicationTable } from '../components/dashboard/ApplicationTable'
 import { DocumentChecklist } from '../components/dashboard/DocumentChecklist'
@@ -11,37 +12,52 @@ import type { StatusBadgeStatus } from '../components/ui/StatusBadge'
 const officerActions: Array<{
   label: string
   status: StatusBadgeStatus
+  route: string
   icon: typeof CheckCircle2
   className: string
 }> = [
   {
     label: 'Approve',
     status: 'Approved',
+    route: 'approved',
     icon: CheckCircle2,
     className: 'border-gov-green-700 bg-gov-green-700 text-white hover:bg-gov-green-900',
   },
   {
     label: 'Reject',
     status: 'Rejected',
+    route: 'rejected',
     icon: AlertTriangle,
     className: 'border-gov-red-600 bg-gov-red-600 text-white hover:bg-[#a9342b]',
   },
   {
     label: 'Request Correction',
     status: 'Correction Required',
+    route: 'correction',
     icon: FileWarning,
     className: 'border-gov-gold-100 bg-gov-gold-100 text-[#73520a] hover:bg-[#ffe8a4]',
   },
   {
     label: 'Escalate',
     status: 'Escalated',
+    route: 'escalated',
     icon: ShieldAlert,
     className: 'border-gray-200 bg-white text-gray-900 hover:bg-gray-50',
   },
 ]
 
 export function OfficerDashboardPage() {
-  const [status, setStatus] = useState<StatusBadgeStatus>('Under Review')
+  const { decision } = useParams()
+  const navigate = useNavigate()
+  const initialStatus =
+    officerActions.find((action) => action.route === decision)?.status ??
+    'Under Review'
+  const [status, setStatus] = useState<StatusBadgeStatus>(initialStatus)
+
+  const updateStatus = (nextStatus: StatusBadgeStatus, route: string) => {
+    setStatus(nextStatus)
+    navigate(`/officer-dashboard/${route}`)
+  }
 
   return (
     <div className="mx-auto max-w-6xl space-y-6 px-6 py-8">
@@ -54,7 +70,7 @@ export function OfficerDashboardPage() {
         </h1>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-gray-600">
           Assigned to {application.officer}. Officer actions update local React
-          state only.
+          state and route to the selected decision state.
         </p>
       </div>
 
@@ -74,7 +90,7 @@ export function OfficerDashboardPage() {
                 <button
                   key={action.label}
                   type="button"
-                  onClick={() => setStatus(action.status)}
+                  onClick={() => updateStatus(action.status, action.route)}
                   className={`inline-flex h-10 items-center justify-center gap-2 rounded-md border px-3 text-sm font-medium transition-colors ${action.className}`}
                 >
                   <Icon className="h-4 w-4" aria-hidden="true" />

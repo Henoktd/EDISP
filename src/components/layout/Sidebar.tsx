@@ -20,19 +20,19 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { to: '/', label: 'Landing', icon: Home },
-  { to: '/auth', label: 'Fayda login', icon: ShieldCheck },
-  { to: '/verified', label: 'Verified profile', icon: UserCheck },
+  { to: '/auth/fayda', label: 'Fayda login', icon: ShieldCheck },
+  { to: '/auth/verified', label: 'Verified profile', icon: UserCheck },
   { to: '/services', label: 'Service catalogue', icon: ClipboardList },
   { to: '/apply/residence-permit', label: 'Residence permit', icon: FileText },
-  { to: '/applicant', label: 'Applicant dashboard', icon: LayoutDashboard },
-  { to: '/officer', label: 'Officer review', icon: UserCheck },
-  { to: '/admin', label: 'Admin oversight', icon: BarChart3 },
-  { to: '/architecture', label: 'Architecture', icon: Network },
+  { to: '/applicant-dashboard', label: 'Applicant dashboard', icon: LayoutDashboard },
+  { to: '/officer-dashboard', label: 'Officer review', icon: UserCheck },
+  { to: '/admin-dashboard', label: 'Admin oversight', icon: BarChart3 },
+  { to: '/system-architecture', label: 'Architecture', icon: Network },
 ]
 
 export function Sidebar() {
   return (
-    <aside className="border-b border-gov-border bg-white lg:min-h-[calc(100vh-81px)] lg:border-b-0 lg:border-r">
+    <aside className="border-b border-gov-border bg-white lg:min-h-[calc(100vh-113px)] lg:w-72 lg:border-b-0 lg:border-r">
       <nav className="px-4 py-5 md:px-6" aria-label="Platform navigation">
         <p className="mb-3 px-3 text-[11px] font-semibold uppercase text-gov-muted">
           Platform sections

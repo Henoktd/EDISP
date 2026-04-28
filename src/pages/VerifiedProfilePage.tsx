@@ -26,6 +26,9 @@ export function VerifiedProfilePage() {
     >
       <div className="grid gap-4 xl:grid-cols-[0.8fr_1.2fr]">
         <Panel>
+          <div className="mb-5 flex h-28 w-28 items-center justify-center rounded border border-gray-200 bg-gray-50 text-3xl font-semibold text-[#1a4d8f]">
+            AK
+          </div>
           <div className="flex items-center gap-3">
             <div className="flex h-14 w-14 items-center justify-center rounded border border-gov-blue-100 bg-gov-blue-50 text-gov-blue-800">
               <BadgeCheck className="h-7 w-7" aria-hidden="true" />
