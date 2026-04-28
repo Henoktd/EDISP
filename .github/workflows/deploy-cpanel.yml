@@ -63,14 +63,18 @@ jobs:
             exit 1
           fi
 
+          CPANEL_HOST="$(printf '%s' "$CPANEL_HOST" | tr -d '\r\n' | sed -E 's#^sftp://##; s#^https?://##; s#/$##')"
+          CPANEL_PORT="$(printf '%s' "$CPANEL_PORT" | tr -d '\r\n')"
+          CPANEL_USERNAME="$(printf '%s' "$CPANEL_USERNAME" | tr -d '\r\n')"
+          CPANEL_PASSWORD="$(printf '%s' "$CPANEL_PASSWORD" | tr -d '\r\n')"
+          CPANEL_TARGET_DIR="$(printf '%s' "$CPANEL_TARGET_DIR" | tr -d '\r\n')"
+
           if [ -z "$CPANEL_PORT" ]; then
             CPANEL_PORT=22
           fi
 
-          lftp -u "$CPANEL_USERNAME","$CPANEL_PASSWORD" "sftp://$CPANEL_HOST:$CPANEL_PORT" <<EOF
-          set sftp:auto-confirm yes
-          set net:max-retries 2
-          set net:timeout 20
-          mirror --reverse --delete --verbose dist "$CPANEL_TARGET_DIR"
-          bye
-          EOF
+          echo "Deploying to host: $CPANEL_HOST"
+          echo "Deploying to port: $CPANEL_PORT"
+          echo "Deploying to target directory: $CPANEL_TARGET_DIR"
+
+          lftp -u "$CPANEL_USERNAME","$CPANEL_PASSWORD" "sftp://$CPANEL_HOST:$CPANEL_PORT" -e "set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 20; mirror --reverse --delete --verbose dist $CPANEL_TARGET_DIR; bye"
