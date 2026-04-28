@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans:
+    Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-mono:
+    "SFMono-Regular", Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --color-gov-green-50: #f0fdf4;
+  --color-gov-green-100: #dcfce7;
+  --color-gov-green-600: #16a34a;
+  --color-gov-green-700: #15803d;
+  --color-gov-green-900: #14532d;
+  --color-gov-blue-50: #eff6ff;
+  --color-gov-blue-100: #dbeafe;
+  --color-gov-blue-600: #1a4d8f;
+  --color-gov-blue-700: #1a4d8f;
+  --color-gov-blue-800: #1a4d8f;
+  --color-gov-blue-900: #153d73;
+  --color-gov-gold-100: #fef3c7;
+  --color-gov-gold-500: #ca8a04;
+  --color-gov-red-50: #fef2f2;
+  --color-gov-red-600: #dc2626;
+  --color-gov-ink: #111827;
+  --color-gov-muted: #4b5563;
+  --color-gov-border: #e5e7eb;
+  --color-gov-surface: #f9fafb;
+}
+
+:root {
+  color: var(--color-gov-ink);
+  background: #f9fafb;
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  background: #f9fafb;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: #eef2ef;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(216, 163, 26, 0.28);
+}
