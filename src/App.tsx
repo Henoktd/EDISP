@@ -3,6 +3,7 @@ import { AppShell } from './components/layout/AppShell'
 import { AdminDashboardPage } from './pages/AdminDashboardPage'
 import { ApplicantDashboardPage } from './pages/ApplicantDashboardPage'
 import { ArchitecturePage } from './pages/ArchitecturePage'
+import { AuthPage } from './pages/AuthPage'
 import { ConfirmationPage } from './pages/ConfirmationPage'
 import { FaydaLoginPage } from './pages/FaydaLoginPage'
 import { FaydaVerifyingPage } from './pages/FaydaVerifyingPage'
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route element={<AppShell />}>
           <Route index element={<HomePage />} />
+          <Route path="/auth" element={<AuthPage />} />
           <Route path="/auth/fayda" element={<FaydaLoginPage />} />
           <Route path="/auth/verifying" element={<FaydaVerifyingPage />} />
           <Route path="/auth/verified" element={<VerifiedProfilePage />} />
@@ -44,7 +46,6 @@ function App() {
           <Route path="/system-architecture" element={<ArchitecturePage />} />
 
           {/* Legacy aliases kept so older shared links still work during demo review. */}
-          <Route path="/auth" element={<FaydaLoginPage />} />
           <Route path="/verified" element={<VerifiedProfilePage />} />
           <Route path="/applicant" element={<ApplicantDashboardPage />} />
           <Route path="/officer" element={<OfficerDashboardPage />} />

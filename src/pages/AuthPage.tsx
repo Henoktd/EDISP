@@ -1,83 +1,76 @@
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { Globe2, ShieldCheck } from 'lucide-react'
-import { Input } from '../components/ui/Input'
-import { applicant } from '../data/mockData'
+import { BriefcaseBusiness, Shield, UserRound } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import { Link } from 'react-router-dom'
+
+type AccessOption = {
+  title: string
+  description: string
+  path: string
+  icon: LucideIcon
+  tone: string
+}
+
+const accessOptions: AccessOption[] = [
+  {
+    title: 'Applicant Access',
+    description: 'Apply for immigration services and track your application status.',
+    path: '/auth/fayda',
+    icon: UserRound,
+    tone: 'bg-blue-50 text-[#1f4f8f]',
+  },
+  {
+    title: 'Officer Access',
+    description: 'Review submitted applications and process case decisions.',
+    path: '/officer-dashboard',
+    icon: BriefcaseBusiness,
+    tone: 'bg-purple-50 text-purple-700',
+  },
+  {
+    title: 'Admin Access',
+    description: 'Monitor service performance, reporting, and system oversight.',
+    path: '/admin-dashboard',
+    icon: Shield,
+    tone: 'bg-gray-100 text-gray-700',
+  },
+]
 
 export function AuthPage() {
-  const navigate = useNavigate()
-  const [searchParams] = useSearchParams()
-  const isForeignMode = searchParams.get('mode') === 'foreign'
-
   return (
-    <div className="mx-auto max-w-md px-6 py-12">
-      <div className="rounded-lg border border-gray-200 bg-white p-8">
-        <div className="mb-6 flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded bg-blue-50 text-[#1a4d8f]">
-            {isForeignMode ? (
-              <Globe2 className="h-5 w-5" aria-hidden="true" />
-            ) : (
-              <ShieldCheck className="h-5 w-5" aria-hidden="true" />
-            )}
-          </div>
-          <div>
-            <h1 className="text-xl font-medium text-gray-900">
-              {isForeignMode ? 'Foreign User Access' : 'Login with Fayda'}
-            </h1>
-            <p className="text-sm text-gray-600">
-              {isForeignMode ? 'Passport-based access' : 'National ID verification'}
-            </p>
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          {isForeignMode ? (
-            <>
-              <Input
-                label="Passport number"
-                placeholder="P-00000000"
-                value="P-70218455"
-                readOnly
-              />
-              <Input
-                label="Email"
-                placeholder="name@example.com"
-                value={applicant.email}
-                helperText="Email verification simulated"
-                readOnly
-              />
-            </>
-          ) : (
-            <Input
-              label="Fayda Identification Number"
-              placeholder="1234 5678 9012"
-              value={applicant.faydaId}
-              helperText="Enter your 12-digit Fayda Identification Number."
-              readOnly
-            />
-          )}
-
-          <button
-            type="button"
-            onClick={() => navigate(isForeignMode ? '/services' : '/verified')}
-            className="inline-flex h-10 w-full items-center justify-center rounded-md bg-[#1a4d8f] px-4 text-sm font-medium text-white hover:bg-[#153d73]"
-          >
-            Continue
-          </button>
-
-          <Link
-            to={isForeignMode ? '/auth' : '/auth?mode=foreign'}
-            className="block w-full text-center text-sm text-[#1a4d8f] hover:underline"
-          >
-            {isForeignMode
-              ? 'Login with Fayda instead'
-              : 'Foreign user? Continue with passport'}
-          </Link>
-        </div>
-
-        <div className="mt-6 rounded border border-blue-100 bg-blue-50 p-4">
-          <p className="text-xs leading-5 text-gray-700">
-            Identity verification is simulated for demo purposes.
+    <div className="min-h-[calc(100vh-113px)] bg-gray-50 px-6 py-[72px] md:px-10">
+      <div className="mx-auto max-w-[1320px]">
+        <div className="text-center">
+          <h1 className="text-[32px] font-semibold leading-tight text-[#020817]">
+            Access Ethiopian Immigration Services
+          </h1>
+          <p className="mt-4 text-xl leading-7 text-[#334155]">
+            Select your role to continue to the platform
           </p>
+        </div>
+
+        <div className="mt-14 grid gap-8 lg:grid-cols-3">
+          {accessOptions.map((option) => {
+            const Icon = option.icon
+
+            return (
+              <Link
+                key={option.title}
+                to={option.path}
+                className="block min-h-[274px] rounded-[12px] border border-gray-200 bg-white px-11 py-11 shadow-[0_0_0_1px_rgba(15,23,42,0.02)] transition-colors hover:border-gray-300 hover:bg-gray-50"
+              >
+                <div
+                  className={`flex h-16 w-16 items-center justify-center rounded-[10px] ${option.tone}`}
+                >
+                  <Icon className="h-8 w-8" strokeWidth={2.2} aria-hidden="true" />
+                </div>
+                <h2 className="mt-8 text-2xl font-semibold text-[#020817]">
+                  {option.title}
+                </h2>
+                <p className="mt-4 max-w-[310px] text-xl font-medium leading-7 text-[#334155]">
+                  {option.description}
+                </p>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </div>

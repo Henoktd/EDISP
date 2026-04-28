@@ -16,7 +16,7 @@ export function HomePage() {
 
           <div className="mt-12 flex flex-wrap gap-6">
             <Link
-              to="/auth/fayda"
+              to="/auth"
               className="inline-flex h-[54px] items-center justify-center rounded-[10px] bg-[#1f4f8f] px-6 text-xl font-semibold text-white hover:bg-[#153d73]"
             >
               Login with Fayda

@@ -1,7 +1,10 @@
 import { Globe2 } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export function Header() {
+  const { pathname } = useLocation()
+  const showNav = !pathname.startsWith('/auth')
+
   return (
     <header className="border-b border-gray-200 bg-white">
       <div className="flex min-h-[112px] items-center justify-between gap-6 px-5 py-5 md:px-9">
@@ -20,15 +23,19 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex">
-          <Link to="/services" className="text-xl text-[#1e293b] hover:text-[#1f4f8f]">
-            Services
-          </Link>
-          <Link to="/applicant-dashboard" className="text-xl text-[#1e293b] hover:text-[#1f4f8f]">
-            Track Application
-          </Link>
-          <Link to="/system-architecture" className="text-xl text-[#1e293b] hover:text-[#1f4f8f]">
-            Help
-          </Link>
+          {showNav ? (
+            <>
+              <Link to="/services" className="text-xl text-[#1e293b] hover:text-[#1f4f8f]">
+                Services
+              </Link>
+              <Link to="/applicant-dashboard" className="text-xl text-[#1e293b] hover:text-[#1f4f8f]">
+                Track Application
+              </Link>
+              <Link to="/system-architecture" className="text-xl text-[#1e293b] hover:text-[#1f4f8f]">
+                Help
+              </Link>
+            </>
+          ) : null}
           <button
             type="button"
             className="flex h-[50px] items-center gap-3 rounded-md border border-gray-200 px-5 text-xl font-semibold text-gray-900 hover:bg-gray-50"
