@@ -1,63 +1,60 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { AppShell } from './components/layout/AppShell'
-import { AdminDashboardPage } from './pages/AdminDashboardPage'
-import { ApplicantDashboardPage } from './pages/ApplicantDashboardPage'
-import { ArchitecturePage } from './pages/ArchitecturePage'
-import { AuthPage } from './pages/AuthPage'
-import { ConfirmationPage } from './pages/ConfirmationPage'
-import { FaydaLoginPage } from './pages/FaydaLoginPage'
-import { FaydaVerifyingPage } from './pages/FaydaVerifyingPage'
-import { ForeignLoginPage } from './pages/ForeignLoginPage'
-import { HomePage } from './pages/HomePage'
-import { OfficerDashboardPage } from './pages/OfficerDashboardPage'
-import { ResidencePermitPage } from './pages/ResidencePermitPage'
-import { ServicesPage } from './pages/ServicesPage'
-import { VerificationFailedPage } from './pages/VerificationFailedPage'
-import { VerifiedProfilePage } from './pages/VerifiedProfilePage'
+import { AdminDashboard } from './figma/pages/AdminDashboard'
+import { ApplicantDashboard } from './figma/pages/ApplicantDashboard'
+import { ApplicationConfirmation } from './figma/pages/ApplicationConfirmation'
+import { ApplicationStep1 } from './figma/pages/ApplicationStep1'
+import { ApplicationStep2 } from './figma/pages/ApplicationStep2'
+import { ApplicationStep3 } from './figma/pages/ApplicationStep3'
+import { ApplicationStep4 } from './figma/pages/ApplicationStep4'
+import { ApplicationStep5 } from './figma/pages/ApplicationStep5'
+import { ApplicationStep6 } from './figma/pages/ApplicationStep6'
+import { Auth } from './figma/pages/Auth'
+import { Landing } from './figma/pages/Landing'
+import { OfficerDashboard } from './figma/pages/OfficerDashboard'
+import { Services } from './figma/pages/Services'
+import { SystemArchitecture } from './figma/pages/SystemArchitecture'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<AppShell />}>
-          <Route index element={<HomePage />} />
-          <Route path="/auth" element={<AuthPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route
-            path="/apply/residence/:stepId"
-            element={<ResidencePermitPage />}
-          />
-          <Route
-            path="/apply/residence/confirmation"
-            element={<ConfirmationPage />}
-          />
-          <Route path="/dashboard" element={<ApplicantDashboardPage />} />
-          <Route path="/officer" element={<OfficerDashboardPage />} />
-          <Route path="/officer/:decision" element={<OfficerDashboardPage />} />
-          <Route path="/admin" element={<AdminDashboardPage />} />
-          <Route path="/architecture" element={<ArchitecturePage />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/apply/residence/step1" element={<ApplicationStep1 />} />
+        <Route path="/apply/residence/step2" element={<ApplicationStep2 />} />
+        <Route path="/apply/residence/step3" element={<ApplicationStep3 />} />
+        <Route path="/apply/residence/step4" element={<ApplicationStep4 />} />
+        <Route path="/apply/residence/step5" element={<ApplicationStep5 />} />
+        <Route path="/apply/residence/step6" element={<ApplicationStep6 />} />
+        <Route
+          path="/apply/residence/confirmation"
+          element={<ApplicationConfirmation />}
+        />
+        <Route path="/dashboard" element={<ApplicantDashboard />} />
+        <Route path="/officer" element={<OfficerDashboard />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/architecture" element={<SystemArchitecture />} />
 
-          {/* Additional prototype states and legacy aliases kept for shared demo links. */}
-          <Route path="/auth/fayda" element={<FaydaLoginPage />} />
-          <Route path="/auth/verifying" element={<FaydaVerifyingPage />} />
-          <Route path="/auth/verified" element={<VerifiedProfilePage />} />
-          <Route path="/auth/failed" element={<VerificationFailedPage />} />
-          <Route path="/auth/foreign" element={<ForeignLoginPage />} />
-          <Route path="/apply/residence-permit" element={<Navigate to="/apply/residence/step1" replace />} />
-          <Route path="/confirmation" element={<Navigate to="/apply/residence/confirmation" replace />} />
-          <Route path="/verified" element={<VerifiedProfilePage />} />
-          <Route path="/applicant" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/applicant-dashboard" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/officer-dashboard" element={<Navigate to="/officer" replace />} />
-          <Route path="/officer-dashboard/:decision" element={<OfficerDashboardPage />} />
-          <Route path="/admin-dashboard" element={<Navigate to="/admin" replace />} />
-          <Route path="/system-architecture" element={<Navigate to="/architecture" replace />} />
-          <Route path="/fayda-login" element={<FaydaLoginPage />} />
-          <Route path="/fayda-verifying" element={<FaydaVerifyingPage />} />
-          <Route path="/verified-profile" element={<VerifiedProfilePage />} />
-          <Route path="/foreign-login" element={<ForeignLoginPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Route>
+        {/* Compatibility redirects for links shared before the Figma export was added. */}
+        <Route path="/auth/fayda" element={<Navigate to="/auth" replace />} />
+        <Route path="/auth/foreign" element={<Navigate to="/auth" replace />} />
+        <Route
+          path="/apply/residence-permit"
+          element={<Navigate to="/apply/residence/step1" replace />}
+        />
+        <Route
+          path="/confirmation"
+          element={<Navigate to="/apply/residence/confirmation" replace />}
+        />
+        <Route path="/applicant-dashboard" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/officer-dashboard" element={<Navigate to="/officer" replace />} />
+        <Route path="/admin-dashboard" element={<Navigate to="/admin" replace />} />
+        <Route
+          path="/system-architecture"
+          element={<Navigate to="/architecture" replace />}
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   )
