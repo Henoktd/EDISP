@@ -77,4 +77,4 @@ jobs:
           echo "Deploying to port: $CPANEL_PORT"
           echo "Deploying to target directory: $CPANEL_TARGET_DIR"
 
-          lftp -u "$CPANEL_USERNAME","$CPANEL_PASSWORD" "ftp://$CPANEL_HOST:$CPANEL_PORT" -e "set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate no; set net:max-retries 2; set net:timeout 20; mirror --reverse --delete --verbose dist $CPANEL_TARGET_DIR; bye"
+          lftp -u "$CPANEL_USERNAME","$CPANEL_PASSWORD" "ftp://$CPANEL_HOST:$CPANEL_PORT" -e "set ftp:ssl-force true; set ftp:ssl-protect-data true; set ftp:passive-mode true; set ftp:prefer-epsv false; set ssl:verify-certificate no; set net:max-retries 2; set net:timeout 30; mirror --reverse --delete --verbose dist $CPANEL_TARGET_DIR; bye"
